@@ -1,23 +1,25 @@
-import Navbar from "@/components/Navbar";
+import ScrollProgress from "@/components/ScrollProgress";
+import Header from "@/components/Header";
+import Dock from "@/components/Dock";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import TechStack from "@/components/TechStack";
-import Projects from "@/components/Projects";
+import Work from "@/components/Work";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <ScrollProgress />
+      <Header />
       <main>
         <Hero />
         <About />
-        <TechStack />
-        <Projects />
+        <Work />
         <Contact />
       </main>
       <Footer />
+      <Dock />
     </>
   );
 }

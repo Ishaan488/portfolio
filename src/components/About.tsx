@@ -1,81 +1,66 @@
-"use client";
-
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import SectionHeading from "./SectionHeading";
+import { focusAreas } from "@/lib/data";
+import Card from "./Card";
+import LocalTime from "./LocalTime";
+import Reveal from "./Reveal";
+import SectionHeader from "./SectionHeader";
+import Terminal from "./Terminal";
+import Toolkit from "./Toolkit";
 
 export default function About() {
-    const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-100px" });
-
     return (
-        <section id="about" className="py-32 px-6">
-            <div className="max-w-4xl mx-auto">
-                <SectionHeading
-                    title="About"
-                    subtitle="A bit about who I am and what I do"
-                />
+        <section id="about" className="py-24 md:py-32">
+            <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12">
+                <SectionHeader index="01" label="About">
+                    Functional is the baseline. <em className="serif">Pleasant</em> is the goal.
+                </SectionHeader>
 
-                <div ref={ref} className="grid md:grid-cols-[1fr_1fr] gap-12 items-start">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        className="space-y-5"
-                    >
-                        <p className="text-[var(--color-muted)] leading-relaxed">
-                            I&apos;m a <span className="text-[var(--color-foreground)]">Computer Science student</span> and
-                            tech enthusiast with a passion for building end-to-end web applications
-                            with optimized backends. I focus on creating digital experiences that are
-                            not just functional, but genuinely pleasant to use.
-                        </p>
-                        <p className="text-[var(--color-muted)] leading-relaxed">
-                            My interests span across <span className="text-[var(--color-foreground)]">automation</span>,
-                            <span className="text-[var(--color-foreground)]"> cloud deployment</span>, and
-                            <span className="text-[var(--color-foreground)]"> AI-powered APIs</span>.
-                            I&apos;m always curious about improving user experience through smart,
-                            thoughtful design.
-                        </p>
-                    </motion.div>
+                <div className="grid gap-4 md:grid-cols-12">
+                    <Reveal className="md:col-span-7">
+                        <Card className="flex h-full flex-col justify-between gap-10 p-6 sm:p-8">
+                            <div>
+                                <p className="label">Who</p>
+                                <p className="mt-5 text-2xl font-medium leading-snug tracking-[-0.02em] sm:text-[1.75rem]">
+                                    I&apos;m a Computer Science student and tech enthusiast who
+                                    builds end-to-end web applications with optimized backends.
+                                </p>
+                                <p className="mt-5 max-w-lg leading-relaxed text-muted">
+                                    I care about digital experiences that are not just functional,
+                                    but genuinely pleasant to use &mdash; and I&apos;m always
+                                    curious about improving them through smart, thoughtful design.
+                                </p>
+                            </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={inView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.4 }}
-                        className="bg-[var(--color-card)] border border-[var(--color-card-border)] rounded-lg p-5 font-mono text-sm"
-                    >
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-                            <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
-                            <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-                        </div>
-                        <div className="space-y-1 text-[var(--color-muted)]">
-                            <p>
-                                <span className="text-[var(--color-accent)]">~</span> whoami
-                            </p>
-                            <p className="text-[var(--color-foreground)]">
-                                → Ishaan Bajpai
-                            </p>
-                            <p className="mt-3">
-                                <span className="text-[var(--color-accent)]">~</span> cat stack.txt
-                            </p>
-                            <p className="text-[var(--color-foreground)]">
-                                → Next.js, TypeScript, Node.js
-                            </p>
-                            <p className="mt-3">
-                                <span className="text-[var(--color-accent)]">~</span> echo $STATUS
-                            </p>
-                            <p className="text-[var(--color-foreground)]">
-                                → Building cool things{" "}
-                                <motion.span
-                                    animate={{ opacity: [1, 0] }}
-                                    transition={{ duration: 0.8, repeat: Infinity }}
-                                >
-                                    ▌
-                                </motion.span>
-                            </p>
-                        </div>
-                    </motion.div>
+                            <div>
+                                <p className="label">Currently into</p>
+                                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                                    {focusAreas.map((area) => (
+                                        <li key={area} className="flex items-center gap-2.5 text-sm">
+                                            <span className="h-1.5 w-1.5 rounded-full bg-accent-text" />
+                                            {area}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </Card>
+                    </Reveal>
+
+                    <Reveal delay={0.08} className="md:col-span-5">
+                        <Card className="h-full p-6 sm:p-8">
+                            <Toolkit />
+                        </Card>
+                    </Reveal>
+
+                    <Reveal className="md:col-span-4">
+                        <Card className="h-full p-6 sm:p-8">
+                            <LocalTime />
+                        </Card>
+                    </Reveal>
+
+                    <Reveal delay={0.08} className="md:col-span-8">
+                        <Card className="h-full">
+                            <Terminal />
+                        </Card>
+                    </Reveal>
                 </div>
             </div>
         </section>
