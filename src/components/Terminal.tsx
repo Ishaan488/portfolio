@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { focusAreas, projects, site, toolkit } from "@/lib/data";
+import { experience, focusAreas, projects, site, toolkit } from "@/lib/data";
 import { toggleTheme } from "@/lib/theme";
 
 type Line = { id: number; kind: "in" | "out"; content: React.ReactNode };
 
-const SUGGESTIONS = ["whoami", "stack", "projects", "contact"];
+const SUGGESTIONS = ["whoami", "experience", "projects", "contact"];
 
 const link = "text-accent-text underline decoration-dotted underline-offset-4";
 
@@ -22,15 +22,26 @@ function respond(command: string): React.ReactNode {
                 <>
                     Available commands:
                     <br />
-                    whoami · about · stack · projects · contact · github · linkedin · theme · clear
+                    whoami · about · experience · stack · projects · contact · github · linkedin · theme · clear
                 </>
             );
         case "whoami":
-            return `${site.name} — full-stack developer and Computer Science student.`;
+            return `${site.name} — software engineer and Computer Science student. Full-stack / AI systems.`;
         case "about":
-            return `I build end-to-end web apps with optimized backends. Into ${focusAreas
-                .join(", ")
-                .toLowerCase()}.`;
+            return `I build full-stack products, AI-native systems and reliable backend infrastructure. Focus: ${focusAreas.join(" · ")}.`;
+        case "experience":
+            return (
+                <>
+                    {experience.map((item) => (
+                        <span key={item.company} className="block">
+                            {item.company}{" "}
+                            <span className="text-muted">
+                                — {item.role.toLowerCase()}, {item.period}
+                            </span>
+                        </span>
+                    ))}
+                </>
+            );
         case "stack":
             return (
                 <>
@@ -47,10 +58,7 @@ function respond(command: string): React.ReactNode {
                 <>
                     {projects.map((project) => (
                         <span key={project.title} className="block">
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className={link}>
-                                {project.title}
-                            </a>{" "}
-                            <span className="text-muted">— {project.kind.toLowerCase()}</span>
+                            {project.title} <span className="text-muted">— {project.year}</span>
                         </span>
                     ))}
                 </>

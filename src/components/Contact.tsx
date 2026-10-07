@@ -15,7 +15,7 @@ export default function Contact() {
     return (
         <section id="contact" className="py-24 md:py-32">
             <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12">
-                <SectionHeader index="03" label="Contact">
+                <SectionHeader index="04" label="Contact">
                     Let&apos;s build something <em className="serif">together</em>.
                 </SectionHeader>
 

@@ -6,11 +6,12 @@ import { EASE } from "@/lib/motion";
 import { toggleTheme, useTheme } from "@/lib/theme";
 import { Moon, Sun } from "./icons";
 
+// `sections` lists every section a pill stays lit for; the first is its link target.
 const items = [
-    { id: "top", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "work", label: "Work" },
-    { id: "contact", label: "Contact" },
+    { id: "top", label: "Home", sections: ["top"] },
+    { id: "about", label: "About", sections: ["about"] },
+    { id: "work", label: "Work", sections: ["experience", "work"] },
+    { id: "contact", label: "Contact", sections: ["contact"] },
 ];
 
 export default function Dock() {
@@ -22,13 +23,15 @@ export default function Dock() {
         const observer = new IntersectionObserver(
             (entries) => {
                 for (const entry of entries) {
-                    if (entry.isIntersecting) setActive(entry.target.id);
+                    if (!entry.isIntersecting) continue;
+                    const item = items.find((i) => i.sections.includes(entry.target.id));
+                    if (item) setActive(item.id);
                 }
             },
             { rootMargin: "-50% 0px -50% 0px" }
         );
-        for (const item of items) {
-            const section = document.getElementById(item.id);
+        for (const id of items.flatMap((item) => item.sections)) {
+            const section = document.getElementById(id);
             if (section) observer.observe(section);
         }
         return () => observer.disconnect();
@@ -53,7 +56,7 @@ export default function Dock() {
                     return (
                         <a
                             key={item.id}
-                            href={`#${item.id}`}
+                            href={`#${item.sections[0]}`}
                             aria-current={isActive ? "true" : undefined}
                             className={`relative rounded-full px-3 py-2 text-[13px] font-medium transition-colors duration-300 sm:px-4 ${
                                 isActive ? "text-bg" : "text-muted hover:text-fg"

@@ -32,7 +32,7 @@ export default function Hero() {
             <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-12">
                 <motion.p {...fadeUp(0.2)} className="label flex items-center gap-3">
                     <span className="h-px w-8 bg-line-strong" />
-                    Full-stack developer &middot; CS student
+                    Full-stack &middot; AI systems
                 </motion.p>
 
                 <h1 className="mt-6 text-[clamp(4rem,15.5vw,13.5rem)] font-semibold leading-[0.86] tracking-[-0.045em]">
@@ -53,10 +53,10 @@ export default function Hero() {
                         {...fadeUp(0.75)}
                         className="max-w-md text-lg leading-relaxed text-muted"
                     >
-                        I build efficient, scalable web apps that feel good to use &mdash; with a
-                        soft spot for <span className="text-fg">automation</span>,{" "}
-                        <span className="text-fg">browser extensions</span> and{" "}
-                        <span className="text-fg">AI-powered APIs</span>.
+                        I build <span className="text-fg">full-stack products</span>,{" "}
+                        <span className="text-fg">AI-native systems</span> and reliable backend
+                        infrastructure &mdash; turning complex workflows into clear, useful
+                        experiences.
                     </motion.p>
 
                     <motion.div {...fadeUp(0.9)} className="flex items-center gap-7">
