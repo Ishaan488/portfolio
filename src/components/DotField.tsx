@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
-const GAP = 30;
-const RADIUS = 190;
+const GAP = 24;
+const RADIUS = 250;
 
 /**
  * Hero backdrop: a grid of dots with a slow ambient wave. Dots near the

@@ -35,7 +35,7 @@ export default function Hero() {
                     Full-stack &middot; AI systems
                 </motion.p>
 
-                <h1 className="mt-6 text-[clamp(4rem,15.5vw,13.5rem)] font-semibold leading-[0.86] tracking-[-0.045em]">
+                <h1 className="mt-6 text-[clamp(4rem,15.5vw,13.5rem)] font-semibold leading-[0.86] tracking-[-0.045em] bg-gradient-to-br from-fg via-fg to-muted bg-clip-text text-transparent pb-4">
                     <span className={mask}>
                         <motion.span {...rise(0.3)} className="block">
                             Ishaan
